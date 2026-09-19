@@ -66,13 +66,9 @@
 }
 \newcommand{\signpost}[1]{%
   \begin{enumerate}
-    \outitem{#1}{1}{The site and the loads}
-    \outitem{#1}{2}{Generation --- the array}
-    \outitem{#1}{3}{Storage --- the battery bank}
-    \outitem{#1}{4}{Conversion --- controllers and inverter}
-    \outitem{#1}{5}{Distribution and protection}
-    \outitem{#1}{6}{Monitoring --- what the system tells you}
-    \outitem{#1}{7}{Alterations --- what I'd change}
+    \outitem{#1}{1}{Understand the current system}
+    \outitem{#1}{2}{Talk Battery tradeoffs}
+    \outitem{#1}{3}{Present 3 paths forward}
   \end{enumerate}
 }
 
@@ -85,40 +81,19 @@
 %%% Intro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \frame {
-    \centering {\fontsize{88}{68}\selectfont \val{48}{V}\phantom{?}}
-  }
-  \frame {
-    \centering {\fontsize{88}{68}\selectfont \val{48}{V}?}
-  }
+
 
   \frame {
-    \myquote{\todo{opening quote --- something about power you make yourself
-                   versus power you buy}}{\todo{who}}{\todo{when}}
-  }
-  \frame {
     \frametitle{Main takeaway}
-    \todo{one sentence. The thesis of the whole talk.}
+    \todo{Batteries are likely past their healthy life. \blueite{something} will need to change.}
   }
   \frame{
     \frametitle{Main takeaway}
-    An off-grid system is not a smaller grid. It is a \blueite{budget}:
     \begin{itemize}
-      \item<2 -> Every watt-hour is one you generated
-      \item<3 -> Every watt-hour is one you stored
-      \item<4 -> Nothing is hidden behind the meter
+      \item<2 -> Current batteries are not available to consumers. Papa Davis had a connection to the telecom industry that allowed him to get \blueite{ very special batteries}
+      \item<3 -> These batteries traded longevity for _ability to cycle_.
+      \item<4 -> There are only two choices of battery type available to consumers like us.
     \end{itemize}
-  }
-  \frame{
-    \frametitle{Main takeaway}
-    \todo{the design constraint that falls out of that --- size for the worst
-          week, not the average one?}
-  }
-  \frame{
-    \frametitle{How?}
-    We'll walk the power from where it arrives to where it gets used, and
-    stop at every box along the way.
-  }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% Outline
@@ -127,14 +102,6 @@
   %%%%%%%
   % Goals
   %
-  \frame{
-    \frametitle{\#goals}
-    \begin{enumerate}
-      \item<2 -> Show you a \blueite{real} system, not a catalogue diagram
-      \item<3 -> \todo{goal two}
-      \item<4 -> \todo{goal three}
-    \end{enumerate}
-  }
 
   %%%%%%%
   % Actual outline
@@ -148,34 +115,38 @@
 %%% 1. The site and the loads
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \frame{
-    \frametitle{Let's start}
-    \signpost{1}
-  }
 
   \frame{
-    \frametitle{The site}
-    \todo{where this is, and why it's off-grid at all --- distance to the
-          nearest pole, cost of a service drop}
-  }
   \frame{
-    \frametitle{What we're actually powering}
-    \begin{kit}
-      \todo{load} & \todo{W} \\
-      \todo{load} & \todo{W} \\
-      \todo{load} & \todo{W} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{The daily number}
-    Everything downstream is sized from one figure:
+    \frametitle{What we're working with}
     \begin{itemize}
-      \item<2 -> \todo{daily consumption in kWh}
-      \item<3 -> \todo{and the peak draw, which is a different problem}
+      \item<2 -> 3 sets of solar panels
+      \item<3 -> A bank of 12 \bueite(lead calcium} batteries
+	  \item<4 -> the controllers to charge the batteries and the inverter to use the batteries
     \end{itemize}
   }
   \frame{
-    \frametitle{Two different problems}
+    \frametitle{The capacity}
+    \blueite{As rate} the system has a capacity of 24kWh
+	\begin{itemize}
+      \item<2 -> This is a lie
+      \item<3 -> This is a lie for two reasons:
+    \end{itemize}
+
+  }
+
+  \frame{
+    \frametitle{The capacity}
+	\begin{itemize}
+      \item<1 -> Only true when the batteries are within the `optimal' age
+      \item<2 -> \blueite{Lead Calcium batteries do not like to be fully discharged!}
+	  \item<3 -> Papa Davis took very good care not to discharge the batteries more than 30-50\%
+	  \item<4 -> Combine that and age of the batteries, actual capacity likely closer to 10kWh.
+    \end{itemize}
+
+  }
+  \frame{
+    \frametitle{The Panels:}
     \begin{enumerate}
       \item<2 -> \blueite{Energy} --- how much you use in a day (sizes the bank
                  and the array)
@@ -196,33 +167,29 @@
   }
 
   \frame{
-    \frametitle{The array}
-    \begin{kit}
-      Panels     & \todo{count $\times$ model} \\
-      Rated      & \todo{W each, W total} \\
-      Wiring     & \todo{series/parallel, strings} \\
-      String V   & \todo{Voc, cold-corrected} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{Series or parallel?}
+    \frametitle{Batteries: an intuition}
     \begin{itemize}
-      \item<2 -> Series raises voltage: thinner wire, longer runs, MPPT is
-                 happier
-      \item<3 -> Parallel raises current: shade on one panel costs you less
-      \item<4 -> \todo{which way this array went, and why}
+      \item<2 -> Lead Acid: can provide significant energy very quickly, but doesn't like to be fully drained: Think `car battery'.
+      \item<3 -> Lithium: can take energy more quickly, and can be (more) fully discharged, but doesn't like to be used in the very-cold: Think mobile phone.
     \end{itemize}
   }
   \frame{
-    \frametitle{Mounting and aim}
-    \todo{roof, ground mount, or pole; tilt and azimuth; whether it's
-          seasonally adjustable}
+    \frametitle{Worth Repeating}
+  	There is no `replace it with the same'. We are not able to get Lead Calcium batteries, their benefits/downsides are irrelevant to us.
   }
   \frame{
-    \frametitle{What it actually makes}
-    \todo{measured output --- best day, worst day, and the gap between the
-          rated number and the real one}
+    \frametitle{General Tradeoff: Lead Acid}
+	Lead Acid are \blueite(slightly} cheaper, and don't mind freezing. They don't last as long and give less \blueite{usable} capacity.
   }
+  \frame{
+    \frametitle{General Tradeoff: Lithium}
+	Lead Acid are \blueite(slightly} more expensive, and can't be charged when freezing. They last years longer and give more capacity.
+  }
+  \frame{
+    \frametitle{Cost Tradeoff}
+	When accounting for the lifespan of the batteries, Lithium wins in cost-per-year.
+  }
+  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 3. Storage
@@ -234,220 +201,28 @@
   }
 
   \frame{
-    \frametitle{The bank}
-    \begin{kit}
-      Chemistry  & \todo{LiFePO4 / AGM / flooded} \\
-      Nominal    & \todo{V} \\
-      Capacity   & \todo{Ah / kWh} \\
-      Usable     & \todo{kWh, at real DoD} \\
-      BMS        & \todo{internal / external} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{Why this chemistry}
+    \frametitle{Possible Paths}
     \begin{itemize}
-      \item<2 -> \todo{the trade that decided it --- cost, cycle life,
-                 temperature, weight}
-      \item<3 -> \todo{what you give up}
+      \item<2 -> Replace Lead Calcium with Lead Acid, capacity stays basically the same, and we revisit in 8-ish years.
+      \item<3 -> Replace Lead Calcium with Lithium, capacity increases and we have to bring the batteries home for winter. Will last 10-15 years/
+	  \item<4 -> Split the two camps: one solar array powers our camp with new lithium system (because they take charge more quickly, this can actually work, you don't need as many solar panels for lithium).
     \end{itemize}
   }
-  \frame{
-    \frametitle{Nameplate vs.\ usable}
-    \todo{the point that a \val{10}{kWh} bank is not \val{10}{kWh} of dinner,
-          and what the real number is here}
+
+\frame{
+    \frametitle{Possible Paths}
+    \begin{itemize}
+      \item<2 -> The cost difference betweeen the cheapeast and most expensive is about \$5,000 CAD
+      \item<3 -> Real question is whether we use this as reason to `split' the camps. 
+	  \item<4 -> Benefit of split is that the current electrical setup probably has a few years left for the amount that grandpa's camp is used. So the system can be `unchanged' for grandpa's camp.
+	  \item<5 -> Downside of keeping systems joint is that any future split would require purchasing more batteries anyway...
+    \end{itemize}
   }
-  \frame{
-    \frametitle{Cold}
-    \todo{charging below freezing, where the bank lives, and what heats it}
-  }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 4. Conversion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \frame{
-    \frametitle{Sign post}
-    \signpost{4}
-  }
-
-  \frame{
-    \frametitle{Charge controller}
-    \begin{kit}
-      Model      & \todo{make/model} \\
-      Type       & \todo{MPPT / PWM} \\
-      Rating     & \todo{A, V input max} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{MPPT, briefly}
-    \todo{why the panel's maximum power point moves, and what the controller
-          is doing about it}
-  }
-  \frame{
-    \frametitle{Inverter}
-    \begin{kit}
-      Model      & \todo{make/model} \\
-      Continuous & \todo{W} \\
-      Surge      & \todo{W, for how long} \\
-      Waveform   & \todo{pure sine} \\
-      Idle draw  & \todo{W --- matters more than you think} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{The tax you pay to idle}
-    \todo{standby consumption over 24h vs.\ the daily budget; whether the
-          inverter gets switched off}
-  }
-  \frame{
-    \frametitle{Charging from elsewhere}
-    \todo{generator, shore power, alternator --- what else can put energy in,
-          and how it's wired}
-  }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 5. Distribution and protection
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  \frame{
-    \frametitle{Sign post}
-    \signpost{5}
-  }
-
-  \frame{
-    \frametitle{From the bank outward}
-    \todo{the one-line: bank $\rightarrow$ bus $\rightarrow$ breakers
-          $\rightarrow$ loads. This slide wants a diagram.}
-    % \begin{figure}
-    %   \centering
-    %   \includegraphics[width=\textwidth]{figs/one-line.png}
-    % \end{figure}
-  }
-  \frame{
-    \frametitle{DC side}
-    \begin{kit}
-      Main fuse  & \todo{A, type} \\
-      Bus bars   & \todo{rating} \\
-      Cable      & \todo{gauge, length, why that gauge} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{AC side}
-    \begin{kit}
-      Panel      & \todo{make, slots} \\
-      Circuits   & \todo{list} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{Sizing wire}
-    \begin{itemize}
-      \item<2 -> Ampacity keeps the wire from catching fire
-      \item<3 -> Voltage drop keeps the system \emph{useful}
-      \item<4 -> On a \val{12}{V} DC run, the second one always wins
-    \end{itemize}
-  }
-  \frame{
-    \frametitle{Protection}
-    \begin{itemize}
-      \item<2 -> \todo{overcurrent: what protects what}
-      \item<3 -> \todo{grounding and bonding --- where the single bond is}
-      \item<4 -> \todo{disconnects: what you can kill, and from where}
-    \end{itemize}
-  }
-  \frame{
-    \frametitle{The rule underneath all of it}
-    Every conductor is protected at the \blueite{source} end, by a device
-    sized for the \blueite{wire}, not for the load.
-  }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 6. Monitoring
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  \frame{
-    \frametitle{Sign post}
-    \signpost{6}
-  }
-
-  \frame{
-    \frametitle{What's watching}
-    \begin{kit}
-      Shunt/monitor & \todo{make/model} \\
-      Readout       & \todo{panel, app, both} \\
-      Logging       & \todo{where the data goes} \\
-    \end{kit}
-  }
-  \frame{
-    \frametitle{State of charge is a guess}
-    \todo{coulomb counting drifts; what re-syncs it, and how wrong it gets}
-  }
-  \frame{
-    \frametitle{A year of it}
-    \todo{the seasonal shape --- the month that's trivial and the month that
-          isn't}
-    % \begin{figure}
-    %   \centering
-    %   \includegraphics[width=\textwidth]{figs/season.png}
-    % \end{figure}
-  }
-  \frame{
-    \frametitle{Living with it}
-    \begin{itemize}
-      \item<2 -> \todo{the habit you didn't expect to form}
-      \item<3 -> \todo{the thing that stopped mattering}
-    \end{itemize}
-  }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% 7. Alterations
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  \frame{
-    \frametitle{Sign post}
-    \signpost{7}
-  }
-
-  \frame{
-    \frametitle{What the wiki says vs.\ what's there now}
-    \todo{the alterations --- what changed since the page was written}
-  }
-  \frame{
-    \frametitle{What I'd do differently}
-    \begin{enumerate}
-      \item<2 -> \todo{alteration one, and what it fixes}
-      \item<3 -> \todo{alteration two}
-      \item<4 -> \todo{alteration three}
-    \end{enumerate}
-  }
-  \frame{
-    \frametitle{What I'd keep}
-    \todo{the decisions that held up}
-  }
-  \frame{
-    \frametitle{The expensive lesson}
-    \todo{the one that cost money to learn}
-  }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Conclusion
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  \frame{
-    \frametitle{Closing thoughts}
-  }
-  \frame{
-    \frametitle{Closing thoughts}
-    \todo{land the takeaway again, now that they've seen the boxes}
-  }
-
-  \frame{
-    \frametitle{Smash that subscribe button}
-      Thanks for your time!
-
-      The whole build is written up at \blueit{wiki.mikedabay.ca}
-  }
-
-  \frame {
-    \centering {\fontsize{88}{68}\selectfont \val{48}{V}!}
-  }
 
 \end{document}
