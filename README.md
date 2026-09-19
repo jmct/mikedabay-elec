@@ -52,6 +52,28 @@ arrives to where it's used:
 Section 7 is where the "alterations" live: the wiki describes the setup as
 built, and this is the slot for anything that has changed since.
 
+## Releases
+
+`.github/workflows/build.yml` builds the deck on every push and pull request,
+and uploads `electrical.pdf` as a build artifact so you can grab the rendered
+deck from any run without a local TeX install.
+
+Pushing a tag beginning with `v` additionally publishes a GitHub Release with
+the PDF attached:
+
+```
+git tag v1 && git push origin v1
+```
+
+The asset is named for the tag (`off-grid-electrical-v1.pdf`) so downloads
+don't all land as `electrical.pdf`. Re-running a tag build replaces the asset
+instead of failing, so you can retag a fix.
+
+The workflow uses only `actions/checkout` and `actions/upload-artifact`; the
+release itself goes through the preinstalled `gh` CLI with the built-in
+`GITHUB_TOKEN`, so there's no third-party action in the release path and no
+secret to configure. `contents: write` is scoped to the job, not the workflow.
+
 ## Conventions
 
 Carried over from `nats`: `\blueit{}`, `\blueite{}`, `\myquote{}{}{}`,
